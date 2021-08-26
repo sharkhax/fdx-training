@@ -2,12 +2,36 @@ package com.drobot.beam.schema;
 
 import com.google.api.services.bigquery.model.TableFieldSchema;
 import com.google.api.services.bigquery.model.TableSchema;
+import org.apache.avro.SchemaBuilder;
 import org.apache.beam.sdk.schemas.utils.AvroUtils;
 
 import java.util.Arrays;
 
 @SuppressWarnings({"unused", "SameParameterValue"})
 public class SchemaHolder {
+
+    public static class Field {
+        public static final String ID = "id";
+        public static final String DATE_TIME = "date_time";
+        public static final String SITE_NAME = "site_name";
+        public static final String POSA_CONTINENT = "posa_continent";
+        public static final String USER_LOCATION_COUNTRY = "user_location_country";
+        public static final String USER_LOCATION_REGION = "user_location_region";
+        public static final String USER_LOCATION_CITY = "user_location_city";
+        public static final String ORIG_DESTINATION_DISTANCE = "orig_destination_distance";
+        public static final String USER_ID = "user_id";
+        public static final String IS_MOBILE = "is_mobile";
+        public static final String IS_PACKAGE = "is_package";
+        public static final String CHANNEL = "channel";
+        public static final String SRCH_CI = "srch_ci";
+        public static final String SRCH_CO = "srch_co";
+        public static final String SRCH_ADULTS_CNT = "srch_adults_cnt";
+        public static final String SRCH_CHILDREN_CNT = "srch_children_cnt";
+        public static final String SRCH_RM_CNT = "srch_rm_cnt";
+        public static final String SRCH_DESTINATION_ID = "srch_destination_id";
+        public static final String SRCH_DESTINATION_TYPE_ID = "srch_destination_type_id";
+        public static final String HOTEL_ID = "hotel_id";
+    }
 
     private static final org.apache.avro.Schema AVRO_RECORD_SCHEMA;
     private static final org.apache.beam.sdk.schemas.Schema BEAM_RECORD_SCHEMA;
@@ -35,71 +59,29 @@ public class SchemaHolder {
     }
 
     private static org.apache.avro.Schema createAvroRecordSchema() {
-        return new org.apache.avro.Schema.Parser().parse("{\n" +
-                "  \"type\" : \"record\",\n" +
-                "  \"name\" : \"topLevelRecord\",\n" +
-                "  \"fields\" : [ {\n" +
-                "    \"name\" : \"id\",\n" +
-                "    \"type\" : [ \"long\", \"null\" ]\n" +
-                "  }, {\n" +
-                "    \"name\" : \"date_time\",\n" +
-                "    \"type\" : [ \"string\", \"null\" ]\n" +
-                "  }, {\n" +
-                "    \"name\" : \"site_name\",\n" +
-                "    \"type\" : [ \"int\", \"null\" ]\n" +
-                "  }, {\n" +
-                "    \"name\" : \"posa_continent\",\n" +
-                "    \"type\" : [ \"int\", \"null\" ]\n" +
-                "  }, {\n" +
-                "    \"name\" : \"user_location_country\",\n" +
-                "    \"type\" : [ \"int\", \"null\" ]\n" +
-                "  }, {\n" +
-                "    \"name\" : \"user_location_region\",\n" +
-                "    \"type\" : [ \"int\", \"null\" ]\n" +
-                "  }, {\n" +
-                "    \"name\" : \"user_location_city\",\n" +
-                "    \"type\" : [ \"int\", \"null\" ]\n" +
-                "  }, {\n" +
-                "    \"name\" : \"orig_destination_distance\",\n" +
-                "    \"type\" : [ \"double\", \"null\" ]\n" +
-                "  }, {\n" +
-                "    \"name\" : \"user_id\",\n" +
-                "    \"type\" : [ \"int\", \"null\" ]\n" +
-                "  }, {\n" +
-                "    \"name\" : \"is_mobile\",\n" +
-                "    \"type\" : [ \"int\", \"null\" ]\n" +
-                "  }, {\n" +
-                "    \"name\" : \"is_package\",\n" +
-                "    \"type\" : [ \"int\", \"null\" ]\n" +
-                "  }, {\n" +
-                "    \"name\" : \"channel\",\n" +
-                "    \"type\" : [ \"int\", \"null\" ]\n" +
-                "  }, {\n" +
-                "    \"name\" : \"srch_ci\",\n" +
-                "    \"type\" : [ \"string\", \"null\" ]\n" +
-                "  }, {\n" +
-                "    \"name\" : \"srch_co\",\n" +
-                "    \"type\" : [ \"string\", \"null\" ]\n" +
-                "  }, {\n" +
-                "    \"name\" : \"srch_adults_cnt\",\n" +
-                "    \"type\" : [ \"int\", \"null\" ]\n" +
-                "  }, {\n" +
-                "    \"name\" : \"srch_children_cnt\",\n" +
-                "    \"type\" : [ \"int\", \"null\" ]\n" +
-                "  }, {\n" +
-                "    \"name\" : \"srch_rm_cnt\",\n" +
-                "    \"type\" : [ \"int\", \"null\" ]\n" +
-                "  }, {\n" +
-                "    \"name\" : \"srch_destination_id\",\n" +
-                "    \"type\" : [ \"int\", \"null\" ]\n" +
-                "  }, {\n" +
-                "    \"name\" : \"srch_destination_type_id\",\n" +
-                "    \"type\" : [ \"int\", \"null\" ]\n" +
-                "  }, {\n" +
-                "    \"name\" : \"hotel_id\",\n" +
-                "    \"type\" : [ \"long\", \"null\" ]\n" +
-                "  } ]\n" +
-                "}");
+        return SchemaBuilder.record("topLevelRecord")
+                .fields()
+                .name(Field.ID).type().nullable().longType().noDefault()
+                .name(Field.DATE_TIME).type().nullable().stringType().noDefault()
+                .name(Field.SITE_NAME).type().nullable().intType().noDefault()
+                .name(Field.POSA_CONTINENT).type().nullable().intType().noDefault()
+                .name(Field.USER_LOCATION_COUNTRY).type().nullable().intType().noDefault()
+                .name(Field.USER_LOCATION_REGION).type().nullable().intType().noDefault()
+                .name(Field.USER_LOCATION_CITY).type().nullable().intType().noDefault()
+                .name(Field.ORIG_DESTINATION_DISTANCE).type().nullable().doubleType().noDefault()
+                .name(Field.USER_ID).type().nullable().intType().noDefault()
+                .name(Field.IS_MOBILE).type().nullable().intType().noDefault()
+                .name(Field.IS_PACKAGE).type().nullable().intType().noDefault()
+                .name(Field.CHANNEL).type().nullable().intType().noDefault()
+                .name(Field.SRCH_CI).type().nullable().stringType().noDefault()
+                .name(Field.SRCH_CO).type().nullable().stringType().noDefault()
+                .name(Field.SRCH_ADULTS_CNT).type().nullable().intType().noDefault()
+                .name(Field.SRCH_CHILDREN_CNT).type().nullable().intType().noDefault()
+                .name(Field.SRCH_RM_CNT).type().nullable().intType().noDefault()
+                .name(Field.SRCH_DESTINATION_ID).type().nullable().intType().noDefault()
+                .name(Field.SRCH_DESTINATION_TYPE_ID).type().nullable().intType().noDefault()
+                .name(Field.HOTEL_ID).type().nullable().longType().noDefault()
+                .endRecord();
     }
 
     private static org.apache.beam.sdk.schemas.Schema createBeamRecordSchema() {
@@ -110,43 +92,27 @@ public class SchemaHolder {
         return new TableSchema()
                 .setFields(
                         Arrays.asList(
-                                longNullableField("id"),
-                                stringNullableField("date_time"),
-                                integerNullableField("site_name"),
-                                integerNullableField("posa_continent"),
-                                integerNullableField("user_location_country"),
-                                integerNullableField("user_location_region"),
-                                integerNullableField("user_location_city"),
-                                doubleNullableField("orig_destination_distance"),
-                                integerNullableField("user_id"),
-                                integerNullableField("is_mobile"),
-                                integerNullableField("is_package"),
-                                integerNullableField("channel"),
-                                stringNullableField("srch_ci"),
-                                stringNullableField("srch_co"),
-                                integerNullableField("srch_adults_cnt"),
-                                integerNullableField("srch_children_cnt"),
-                                integerNullableField("srch_rm_cnt"),
-                                integerNullableField("srch_destination_id"),
-                                integerNullableField("srch_destination_type_id"),
-                                longNullableField("hotel_id")
+                                new TableFieldSchema().setName(Field.ID).setType("INT64"),
+                                new TableFieldSchema().setName(Field.DATE_TIME).setType("STRING"),
+                                new TableFieldSchema().setName(Field.SITE_NAME).setType("INTEGER"),
+                                new TableFieldSchema().setName(Field.POSA_CONTINENT).setType("INTEGER"),
+                                new TableFieldSchema().setName(Field.USER_LOCATION_COUNTRY).setType("INTEGER"),
+                                new TableFieldSchema().setName(Field.USER_LOCATION_REGION).setType("INTEGER"),
+                                new TableFieldSchema().setName(Field.USER_LOCATION_CITY).setType("INTEGER"),
+                                new TableFieldSchema().setName(Field.ORIG_DESTINATION_DISTANCE).setType("FLOAT64"),
+                                new TableFieldSchema().setName(Field.USER_ID).setType("INTEGER"),
+                                new TableFieldSchema().setName(Field.IS_MOBILE).setType("INTEGER"),
+                                new TableFieldSchema().setName(Field.IS_PACKAGE).setType("INTEGER"),
+                                new TableFieldSchema().setName(Field.CHANNEL).setType("INTEGER"),
+                                new TableFieldSchema().setName(Field.SRCH_CI).setType("STRING"),
+                                new TableFieldSchema().setName(Field.SRCH_CO).setType("STRING"),
+                                new TableFieldSchema().setName(Field.SRCH_ADULTS_CNT).setType("INTEGER"),
+                                new TableFieldSchema().setName(Field.SRCH_CHILDREN_CNT).setType("INTEGER"),
+                                new TableFieldSchema().setName(Field.SRCH_RM_CNT).setType("INTEGER"),
+                                new TableFieldSchema().setName(Field.SRCH_DESTINATION_ID).setType("INTEGER"),
+                                new TableFieldSchema().setName(Field.SRCH_DESTINATION_TYPE_ID).setType("INTEGER"),
+                                new TableFieldSchema().setName(Field.HOTEL_ID).setType("INT64")
                         )
                 );
-    }
-
-    private static TableFieldSchema integerNullableField(String name) {
-        return new TableFieldSchema().setName(name).setType("INTEGER");
-    }
-
-    private static TableFieldSchema stringNullableField(String name) {
-        return new TableFieldSchema().setName(name).setType("STRING");
-    }
-
-    private static TableFieldSchema longNullableField(String name) {
-        return new TableFieldSchema().setName(name).setType("INT64");
-    }
-
-    private static TableFieldSchema doubleNullableField(String name) {
-        return new TableFieldSchema().setName(name).setType("FLOAT64");
     }
 }
