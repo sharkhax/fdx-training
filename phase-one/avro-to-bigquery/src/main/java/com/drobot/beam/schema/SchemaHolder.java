@@ -7,7 +7,6 @@ import org.apache.beam.sdk.schemas.utils.AvroUtils;
 
 import java.util.Arrays;
 
-@SuppressWarnings({"unused", "SameParameterValue"})
 public class SchemaHolder {
 
     public static class Field {
@@ -50,10 +49,12 @@ public class SchemaHolder {
         return AVRO_RECORD_SCHEMA;
     }
 
+    @SuppressWarnings("unused")
     public static org.apache.beam.sdk.schemas.Schema getBeamRecordSchema() {
         return BEAM_RECORD_SCHEMA;
     }
 
+    @SuppressWarnings("unused")
     public static TableSchema getBqTableSchema() {
         return BQ_TABLE_SCHEMA;
     }
