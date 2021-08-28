@@ -70,6 +70,7 @@ public class BucketToDbWriter {
         Options options = PipelineOptionsFactory
                 .fromArgs(args)
                 .create()
+				.withValidation()
                 .as(Options.class);
         return Pipeline.create(options);
     }
