@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         Pipeline pipeline = ProducerPipeline.createPipeline(args);
         PipelineResult result = pipeline.run();
-        if (pipeline.getOptions().as(DataflowPipelineOptions.class) == null) {
+        if (pipeline.getOptions().as(DataflowPipelineOptions.class).getTemplateLocation() == null) {
             result.waitUntilFinish();
         }
     }
