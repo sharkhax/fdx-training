@@ -64,9 +64,8 @@ public class ProducerPipeline extends Pipeline {
     }
 
     private PCollection<GenericRecord> readRecords() {
-        Options options = getOptions();
         Schema schema = RecordSchema.getAvroRecordSchema();
-        ValueProvider<String> fileTemplate = options.getFileTemplate();
+        ValueProvider<String> fileTemplate = getOptions().getFileTemplate();
         return super.apply("Read records from avro file", new AvroReadTransform(schema, fileTemplate));
     }
 
@@ -75,7 +74,7 @@ public class ProducerPipeline extends Pipeline {
     }
 
     private PCollection<String> convertToJson(PCollection<GenericRecord> input) {
-        return input.apply(new JsonConvertTransform());
+        return input.apply("Serialize to JSON", new JsonConvertTransform());
     }
 
     @SuppressWarnings("UnusedReturnValue")

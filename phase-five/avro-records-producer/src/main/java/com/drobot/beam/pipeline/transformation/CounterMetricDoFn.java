@@ -7,10 +7,9 @@ import org.apache.beam.sdk.transforms.DoFn;
 public class CounterMetricDoFn<T> extends DoFn<T, T> {
 
     private final Counter counter;
-    private static final String METRIC_NAME = "records-counter";
 
-    public CounterMetricDoFn(Class<?> namespace) {
-        counter = Metrics.counter(namespace, METRIC_NAME);
+    public CounterMetricDoFn(Class<?> namespace, String name) {
+        counter = Metrics.counter(namespace, name);
     }
 
     @SuppressWarnings("unused")

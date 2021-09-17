@@ -17,7 +17,7 @@ public class PubsubJsonProducer extends PTransform<PCollection<String>, PDone> {
         PubsubOptions options = pipeline.getOptions().as(PubsubOptions.class);
         ValueProvider<String> topic = options.getTopic();
         input.apply("Apply counter metric",
-                ParDo.of(new CounterMetricDoFn<>(PubsubJsonProducer.class))
+                ParDo.of(new CounterMetricDoFn<>(PubsubJsonProducer.class, "records-counter"))
         );
         input.apply(
                 PubsubIO.writeStrings()

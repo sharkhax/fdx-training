@@ -129,13 +129,6 @@
             <version>${beam.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.beam/beam-sdks-java-io-jdbc -->
-        <dependency>
-            <groupId>org.apache.beam</groupId>
-            <artifactId>beam-sdks-java-io-jdbc</artifactId>
-            <version>${beam.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
@@ -153,7 +146,6 @@
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>${logger.version}</version>
         </dependency>
-
     </dependencies>
 
 </project>
