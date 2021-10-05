@@ -1,0 +1,20 @@
+{
+	"name": "kcbq-connect1",
+    "config": 
+	{
+		"connector.class": "com.wepay.kafka.connect.bigquery.BigQuerySinkConnector",
+		"tasks.max" : "1",
+		"topics" : "phase-eight",
+		"sanitizeTopics" : "true",
+		"autoCreateTables" : "true",
+		"autoUpdateSchemas" : "true",
+		"schemaRetriever" : "com.wepay.kafka.connect.bigquery.schemaregistry.schemaretriever.SchemaRegistrySchemaRetriever",
+		"schemaRegistryLocation" : "http://10.48.9.96:8081",
+		"bufferSize" : "100000",
+		"maxWriteSize" : "10000",
+		"tableWriteWait" : "1000",
+		"project" : "phase-nine",
+		"datasets" : ".*=phase_nine",
+		"keyfile" : "/usr/share/java/creds.json"
+	}
+}

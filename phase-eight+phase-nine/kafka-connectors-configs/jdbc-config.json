@@ -1,0 +1,19 @@
+{
+	"name": "jdbc-connect1",
+    "config": 
+	{
+		"connector.class":"io.confluent.connect.jdbc.JdbcSourceConnector",
+        "connection.url": "jdbc:postgresql://10.26.48.3:5432/custom",
+        "connection.user": "postgres",
+        "connection.password": "postgres",
+        "topic.prefix": "postgres-01-",
+        "mode":"bulk",
+		"transforms":"createKey,extractLong",
+        "transforms.createKey.type":"org.apache.kafka.connect.transforms.ValueToKey",
+        "transforms.createKey.fields":"id",
+        "transforms.extractLong.type":"org.apache.kafka.connect.transforms.ExtractField$Key",
+        "transforms.extractLong.field":"id",
+		"key.converter": "org.apache.kafka.connect.storage.StringConverter",
+		"table.whitelist":"records.raw_records"
+	}
+}
