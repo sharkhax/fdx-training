@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## The script was not tested due to expiring GCP trial.
-## It commands for deploying Cloud Functions (for triggering DataFlow jobs), 
+## It contains commands for deploying Cloud Functions (for triggering DataFlow jobs), 
 ## PubSub topic (for triggering one of Cloud Functions),
 ## DataFlow templates,
 ## Cloud SQL instance and its database.
